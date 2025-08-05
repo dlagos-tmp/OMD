@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB= public_db
+      - POSTGRES_USER=public_user
+      - POSTGRES_PASSWORD=publicN3xt!
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    #  - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/public_db
+  #     - SPRING_DATASOURCE_USERNAME=public_user
+  #     - SPRING_DATASOURCE_PASSWORD=publicN3xt!
+
+volumes:
+  postgres-data:
