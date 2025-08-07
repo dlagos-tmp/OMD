@@ -25,12 +25,13 @@ public class OrderProcessingLogController {
 
     @PostMapping
     public ResponseEntity<OrderProcessingLog> logOrder(@RequestBody OrderProcessingLog log) {
-        OrderProcessingLog saved = logService.saveLog(log);
+
         try {
             logger.info("Request: {}",objectMapper.writeValueAsString(log));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+        OrderProcessingLog saved = logService.saveLog(log);
         return ResponseEntity.ok(saved);
     }
 }
