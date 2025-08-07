@@ -21,7 +21,30 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-
+  order-management-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: order-management-service/target/order-management-service-1.0-SNAPSHOT.jar
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  order-processing-log-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: order-processing-log-service/target/order-processing-log-service-1.0-SNAPSHOT.jar
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mongo
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
 volumes:
   postgres_data:
   mongo_data:
