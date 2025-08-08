@@ -18,7 +18,7 @@ import java.util.Map;
 public class OrderProcessingLogClientService {
     private static final Logger logger = LoggerFactory.getLogger(OrderProcessingLogClientService.class);
 
-    @Value("${log.service.url}")
+    @Value("http://order-processing-log-service:8090/logs")
     private String logServiceUrl;
 
     private final RestTemplate restTemplate = new RestTemplate();

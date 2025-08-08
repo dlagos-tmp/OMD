@@ -33,6 +33,7 @@ services:
       - postgres
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - LOG_SERVICE_URL=http://order-processing-log-service:8090/logs
   order-processing-log-service:
     build:
       context: .
@@ -48,15 +49,4 @@ services:
 volumes:
   postgres_data:
   mongo_data:
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8080:8080"
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/public_db
-  #     - SPRING_DATASOURCE_USERNAME=public_user
-  #     - SPRING_DATASOURCE_PASSWORD=publicN3xt!
+
